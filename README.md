@@ -1,6 +1,7 @@
-﻿# AI Automation Toolkit
+﻿# AI Automation Toolkit (V3)
 
 A production-ready FastAPI-based automation toolkit providing RESTful API endpoints.
+Integrated with DeepSeek API for real AI chat responses.
 
 ## Project Structure
 
@@ -16,7 +17,7 @@ A production-ready FastAPI-based automation toolkit providing RESTful API endpoi
     │   └── config.py        # Settings & configuration
     └── services/
         ├── __init__.py
-        └── ai_service.py    # AI Service layer (DeepSeek-ready)
+        └── ai_service.py    # AI Service layer (DeepSeek V3)
     main.py                  # Thin wrapper for running the app
     requirements.txt
     Dockerfile
@@ -29,11 +30,13 @@ A production-ready FastAPI-based automation toolkit providing RESTful API endpoi
 
        pip install -r requirements.txt
 
-2. (Optional) Configure AI Service:
+2. (Optional) Configure AI Service (DeepSeek):
 
-   Copy .env.example to .env and set your DeepSeek API key:
+   Copy `.env.example` to `.env` and set your DeepSeek API key:
 
        DEEPSEEK_API_KEY=sk-your-key-here
+
+   Get a key at [https://platform.deepseek.com/api_keys](https://platform.deepseek.com/api_keys).
 
    Without a real key, the chat endpoint returns a mock reply.
 
@@ -47,19 +50,39 @@ A production-ready FastAPI-based automation toolkit providing RESTful API endpoi
 
 - GET /              — returns a welcome message
 - GET /health        — health check
-- POST /api/chat     — AI chat (mock mode if no API key)
+- POST /api/chat     — AI chat (real DeepSeek reply when API key is set, mock otherwise)
 
        Request:   { "message": "hello" }
-       Response:  { "reply": "AI Service is ready: hello" }
+       Response:  { "reply": "Hello! How can I help you today?" }
 
 ## AI Service
 
-The `AIService` layer in `app/services/ai_service.py` is designed
-to bridge the chat endpoint with the DeepSeek API.
+The `AIService` layer in `app/services/ai_service.py` bridges the chat
+endpoint with the DeepSeek API using `httpx.AsyncClient`.
 
-- When `DEEPSEEK_API_KEY` is not set or equals `your_api_key_here`,
-  the service returns a mock response: `"AI Service is ready: {message}"`.
-- Set the environment variable to a real key to enable the actual API call.
+- **Mock mode**: When `DEEPSEEK_API_KEY` is not set or equals
+  `your_api_key_here`, returns `"AI Service is ready: {message}"`.
+- **Real mode**: When a valid key is configured, sends the user message
+  to `https://api.deepseek.com/chat/completions` (`deepseek-chat` model)
+  and returns the AI-generated reply.
+- **Error handling**: If the API call fails (network error, invalid key,
+  server error, or unexpected response format), a friendly Chinese error
+  message is returned rather than crashing.
+
+No changes to the POST `/api/chat` interface — the request/response
+schemas (`ChatRequest` / `ChatResponse`) remain identical.
+
+### DeepSeek Configuration Steps
+
+1. Obtain a DeepSeek API key from the [DeepSeek Platform](https://platform.deepseek.com/).
+2. Create a `.env` file in the project root:
+
+       DEEPSEEK_API_KEY=sk-your-actual-key
+
+3. Restart the server. The chat endpoint will now use the real model.
+
+**Note**: The API key is read from environment or `.env` file via
+`pydantic-settings`. No hardcoded keys are used.
 
 ## Docker
 
