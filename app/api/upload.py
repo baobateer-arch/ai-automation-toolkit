@@ -1,4 +1,4 @@
-﻿from fastapi import APIRouter, UploadFile, File, HTTPException
+﻿from fastapi import APIRouter, UploadFile, File, HTTPException, Depends
 from fastapi.responses import FileResponse
 import os
 import uuid
@@ -6,7 +6,9 @@ import uuid
 from app.services.pdf_service import PDFService
 from app.services.document_ai_service import DocumentAIService
 from app.database import async_session
+from app.core.security import get_current_user
 from app.models.report import Report
+from app.models.user import User
 from app.services.report_export_service import generate_pdf, generate_docx
 
 router = APIRouter()
@@ -43,7 +45,7 @@ async def upload_pdf(file: UploadFile = File(...)):
 
 
 @router.post("/api/analyze-pdf")
-async def analyze_pdf(file: UploadFile = File(...)):
+async def analyze_pdf(file: UploadFile = File(...), user: User = Depends(get_current_user)):
     if not file.filename:
         raise HTTPException(status_code=400, detail="No file provided")
     ext = os.path.splitext(file.filename)[1].lower()
@@ -61,8 +63,8 @@ async def analyze_pdf(file: UploadFile = File(...)):
     # Save to database
     async with async_session() as session:
         report = Report(
+            user_id=user.id,
             filename=original_filename,
-            summary=result.get("summary", ""),
             key_points=result.get("key_points", []),
             risks=result.get("risks", []),
             suggestions=result.get("suggestions", []),
@@ -78,10 +80,10 @@ async def analyze_pdf(file: UploadFile = File(...)):
 
 
 @router.get("/api/reports")
-async def list_reports():
+async def list_reports(user: User = Depends(get_current_user)):
     async with async_session() as session:
         from sqlalchemy import select, desc
-        stmt = select(Report).order_by(desc(Report.created_at)).limit(50)
+        stmt = select(Report).where(Report.user_id == user.id).order_by(desc(Report.created_at)).limit(50)
         reports = (await session.execute(stmt)).scalars().all()
         return [
             {
@@ -95,10 +97,10 @@ async def list_reports():
 
 
 @router.get("/api/reports/{report_id}")
-async def get_report(report_id: int):
+async def get_report(report_id: int, user: User = Depends(get_current_user)):
     async with async_session() as session:
         from sqlalchemy import select
-        stmt = select(Report).where(Report.id == report_id)
+        stmt = select(Report).where(Report.id == report_id, Report.user_id == user.id)
         report = (await session.execute(stmt)).scalar_one_or_none()
         if not report:
             raise HTTPException(status_code=404, detail="Report not found")
@@ -114,10 +116,10 @@ async def get_report(report_id: int):
 
 
 @router.get("/api/reports/{report_id}/export/pdf")
-async def export_report_pdf(report_id: int):
+async def export_report_pdf(report_id: int, user: User = Depends(get_current_user)):
     async with async_session() as session:
         from sqlalchemy import select
-        stmt = select(Report).where(Report.id == report_id)
+        stmt = select(Report).where(Report.id == report_id, Report.user_id == user.id)
         report = (await session.execute(stmt)).scalar_one_or_none()
         if not report:
             raise HTTPException(status_code=404, detail="Report not found")
@@ -126,10 +128,10 @@ async def export_report_pdf(report_id: int):
 
 
 @router.get("/api/reports/{report_id}/export/docx")
-async def export_report_docx(report_id: int):
+async def export_report_docx(report_id: int, user: User = Depends(get_current_user)):
     async with async_session() as session:
         from sqlalchemy import select
-        stmt = select(Report).where(Report.id == report_id)
+        stmt = select(Report).where(Report.id == report_id, Report.user_id == user.id)
         report = (await session.execute(stmt)).scalar_one_or_none()
         if not report:
             raise HTTPException(status_code=404, detail="Report not found")
