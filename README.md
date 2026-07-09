@@ -55,6 +55,12 @@ Integrated with DeepSeek API for real AI chat responses.
        Request:   { "message": "hello" }
        Response:  { "reply": "Hello! How can I help you today?" }
 
+
+- POST /api/upload   — upload a PDF file and extract its text
+
+       Request:  multipart/form-data with a "file" field (PDF)
+       Response: { "filename": "...", "text_length": N, "preview": "first 500 chars" }
+
 ## AI Service
 
 The `AIService` layer in `app/services/ai_service.py` bridges the chat
@@ -83,6 +89,32 @@ schemas (`ChatRequest` / `ChatResponse`) remain identical.
 
 **Note**: The API key is read from environment or `.env` file via
 `pydantic-settings`. No hardcoded keys are used.
+
+## PDF Upload API
+
+Upload a PDF file and extract its text content using PyMuPDF (fitz).
+
+- **Endpoint**: `POST /api/upload`
+- **Request**: `multipart/form-data` with a `file` field
+- **File size limit**: controlled by FastAPI defaults (`UploadFile`)
+- **Flow**: uploaded file is saved to `uploads/`, then `PDFService.extract_text()`
+  reads all pages using PyMuPDF and returns a preview.
+
+### Example
+
+    curl -X POST http://localhost:8000/api/upload \\
+      -F "file=@document.pdf"
+
+### Response
+
+    {
+      "filename": "document.pdf",
+      "text_length": 3421,
+      "preview": "First 500 characters of extracted text..."
+    }
+
+**Note**: Only `.pdf` files are accepted. A random UUID filename is used
+on the server to avoid collisions.
 
 ## Docker
 
