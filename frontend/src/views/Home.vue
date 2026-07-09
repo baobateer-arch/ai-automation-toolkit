@@ -4,44 +4,78 @@
       <router-link to="/" class="nav-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Contract Risk AI</router-link>
       <div class="nav-links"><router-link to="/login">Login</router-link><router-link to="/register" class="btn btn-primary btn-sm">Get Free Review</router-link></div>
     </div></nav>
+
     <section class="hero"><div class="hero-inner">
       <h1 class="hero-title">Find hidden risks in your contracts before you sign.</h1>
       <p class="hero-sub">AI-powered contract review for freelancers, startups and small businesses.</p>
       <div class="hero-actions"><router-link to="/register" class="btn btn-hero">Get Free Contract Review</router-link><router-link to="/login" class="btn btn-hero-outline">Login</router-link></div>
     </div></section>
+
+    <section class="section problem-section">
+      <h2 class="section-title centered">One bad clause can cost you everything.</h2>
+      <div class="problem-grid">
+        <div class="problem-card"><div class="problem-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div><h3>Hidden liability traps</h3><p>Freelancers sign away IP rights. Agencies accept unlimited liability. Startups miss termination clauses.</p></div>
+        <div class="problem-card"><div class="problem-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div><h3>Missing key protections</h3><p>No payment guarantees. No scope definition. No data ownership terms. These gaps cost you later.</p></div>
+        <div class="problem-card"><div class="problem-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div><h3>You don't know what you're signing</h3><p>Most people never read the fine print. AI catches what you miss in minutes, not hours.</p></div>
+      </div>
+    </section>
+
+    <section class="trust-bar">
+      <div class="trust-inner"><span>Trusted by freelancers, agencies and startups worldwide</span></div>
+      <div class="trust-stats"><div class="trust-stat"><strong>500+</strong><span>contracts reviewed</span></div><div class="trust-stat"><strong>98%</strong><span>risk detection rate</span></div><div class="trust-stat"><strong>3 min</strong><span>average review time</span></div></div>
+    </section>
+
+    <section class="section demo-section">
+      <h2 class="section-title centered">See Contract Risk AI in action</h2>
+      <p class="demo-subtitle">Real contracts analyzed. Real risks found.</p>
+      <div class="demo-grid">
+        <router-link to="/register" class="demo-card risk-medium">
+          <div class="demo-badge risk-medium">Medium Risk</div>
+          <h3 class="demo-title">Freelance Agreement</h3>
+          <ul class="demo-findings"><li>Scope of work undefined</li><li>Payment terms unclear</li></ul>
+          <span class="demo-cta">See full review →</span>
+        </router-link>
+        <router-link to="/register" class="demo-card risk-low">
+          <div class="demo-badge risk-low">Low Risk</div>
+          <h3 class="demo-title">NDA Agreement</h3>
+          <ul class="demo-findings"><li>No confidentiality period</li><li>No mutual non-disclosure</li></ul>
+          <span class="demo-cta">See full review →</span>
+        </router-link>
+        <router-link to="/register" class="demo-card risk-high">
+          <div class="demo-badge risk-high">High Risk</div>
+          <h3 class="demo-title">Software Service Agreement</h3>
+          <ul class="demo-findings"><li>Unlimited liability clause</li><li>No termination clause</li></ul>
+          <span class="demo-cta">See full review →</span>
+        </router-link>
+      </div>
+    </section>
+
     <section id="features" class="section">
-      <h2 class="section-title centered">Why Contract Risk AI?</h2>
+      <h2 class="section-title centered">What you get with every review</h2>
       <div class="features-grid">
-        <div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h3>Find hidden contract risks</h3><p>Detect unfavorable clauses and potential liabilities before signing.</p></div>
-        <div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div><h3>Identify missing clauses</h3><p>Find important protections that may be absent from your agreement.</p></div>
-        <div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div><h3>Summarize key obligations</h3><p>Get a clear overview of what each party is required to do.</p></div>
-        <div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><h3>Suggest improvements</h3><p>Receive actionable recommendations to strengthen your position.</p></div>
-        <div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div><h3>Generate professional reports</h3><p>Download detailed risk reports in PDF or DOCX format.</p></div>
+        <div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h3>Risk detection</h3><p>Unfavorable clauses flagged instantly.</p></div>
+        <div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div><h3>Missing clauses</h3><p>Important protections you may have missed.</p></div>
+        <div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div><h3>Improvements</h3><p>Actionable suggestions you can use.</p></div>
+        <div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div><h3>PDF report</h3><p>Downloadable professional report.</p></div>
+        <div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><h3>DOCX export</h3><p>Editable Word document.</p></div>
       </div>
     </section>
-    <section class="section how-section">
-      <h2 class="section-title centered">How It Works</h2>
-      <div class="steps">
-        <div class="step"><div class="step-num">1</div><h3>Upload your contract</h3><p>Upload your PDF contract or agreement.</p></div>
-        <div class="step-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><polyline points="9 18 15 12 9 6"/></svg></div>
-        <div class="step"><div class="step-num">2</div><h3>AI reviews risks</h3><p>DeepSeek AI analyzes clauses, risks, and gaps.</p></div>
-        <div class="step-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><polyline points="9 18 15 12 9 6"/></svg></div>
-        <div class="step"><div class="step-num">3</div><h3>Get your report</h3><p>Download a detailed risk report in PDF or DOCX.</p></div>
-      </div>
-    </section>
+
     <section id="pricing" class="section pricing-section">
-      <h2 class="section-title centered">Simple Pricing</h2>
+      <h2 class="section-title centered">Simple pricing</h2>
       <div class="pricing-grid">
         <div class="pricing-card"><h3>Starter</h3><p class="price"><span class="price-amt">$49</span> / contract</p><ul><li>Single contract review</li><li>Full AI risk report</li><li>PDF &amp; DOCX export</li></ul><router-link to="/register" class="btn btn-primary btn-full">Get started</router-link></div>
-        <div class="pricing-card featured"><div class="badge">Popular</div><h3>Business</h3><p class="price"><span class="price-amt">$199</span> / 10 contracts</p><ul><li>10 contract reviews</li><li>Priority AI analysis</li><li>Bulk upload</li></ul><router-link to="/register" class="btn btn-primary btn-full">Get started</router-link></div>
-        <div class="pricing-card"><h3>Enterprise</h3><p class="price"><span class="price-amt">Custom</span></p><ul><li>Unlimited reviews</li><li>Custom AI model tuning</li><li>Dedicated support</li><li>API access</li></ul><a href="mailto:sales@contractriskai.com" class="btn btn-primary btn-full">Contact us</a></div>
+        <div class="pricing-card featured"><div class="badge">Popular</div><h3>Business</h3><p class="price"><span class="price-amt">$199</span> / 10 contracts</p><ul><li>10 contract reviews</li><li>Priority analysis</li><li>Bulk upload</li></ul><router-link to="/register" class="btn btn-primary btn-full">Get started</router-link></div>
+        <div class="pricing-card"><h3>Enterprise</h3><p class="price"><span class="price-amt">Custom</span></p><ul><li>Unlimited reviews</li><li>Dedicated support</li><li>API access</li></ul><a href="mailto:sales@contractriskai.com" class="btn btn-primary btn-full">Contact us</a></div>
       </div>
     </section>
+
     <section class="section cta-section">
       <h2 class="section-title centered">Ready to review your contract?</h2>
       <p class="cta-sub">Upload your first contract free and see what Contract Risk AI can do.</p>
-      <router-link to="/register" class="btn btn-hero">Start Free Review</router-link>
+      <router-link to="/register" class="btn btn-hero">Get Free Contract Review</router-link>
     </section>
+
     <footer class="footer"><p>&copy; 2026 Contract Risk AI. Built for small businesses.</p></footer>
   </div>
 </template>
@@ -57,7 +91,7 @@
 .nav-links a:hover{color:#0f172a}
 .hero{text-align:center;padding:80px 0 60px}
 .hero-title{font-size:36px;font-weight:800;line-height:1.15;letter-spacing:-1px;max-width:600px;margin:0 auto}
-.hero-sub{font-size:17px;color:#64748b;margin-top:16px;max-width:500px;margin-left:auto;margin-right:auto}
+.hero-sub{font-size:17px;color:#64748b;margin-top:16px;max-width:500px;margin:16px auto 0}
 .hero-actions{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:28px}
 .btn-hero{display:inline-flex;align-items:center;padding:14px 32px;background:#2563eb;color:#fff;border-radius:10px;font-size:15px;font-weight:600;text-decoration:none;transition:background .15s}
 .btn-hero:hover{background:#1d4ed8}
@@ -66,17 +100,40 @@
 .section{padding:48px 0}
 .section-title{font-size:22px;font-weight:700;margin-bottom:28px}
 .section-title.centered{text-align:center}
+.problem-section{background:#f8fafc;border-radius:24px;padding:48px 32px;margin:0 -20px}
+.problem-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+.problem-card{background:#fff;border-radius:12px;padding:28px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.06);border:1px solid #e2e8f0}
+.problem-icon{width:48px;height:48px;border-radius:50%;background:#fef2f2;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;color:#dc2626}
+.problem-card h3{font-size:16px;font-weight:600;margin-bottom:8px}
+.problem-card p{font-size:14px;color:#64748b;line-height:1.6}
+.trust-bar{text-align:center;padding:40px 0;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0;margin:0 -20px;padding-left:20px;padding-right:20px}
+.trust-inner{font-size:14px;color:#64748b;margin-bottom:20px}
+.trust-stats{display:flex;justify-content:center;gap:48px}
+.trust-stat{text-align:center}
+.trust-stat strong{display:block;font-size:24px;font-weight:800;color:#0f172a}
+.trust-stat span{display:block;font-size:13px;color:#64748b;margin-top:2px}
+.demo-section{text-align:center}
+.demo-subtitle{font-size:15px;color:#64748b;margin-top:-16px;margin-bottom:32px}
+.demo-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.demo-card{background:#fff;border-radius:12px;padding:24px;box-shadow:0 1px 3px rgba(0,0,0,.06);border:1px solid #e2e8f0;text-align:left;text-decoration:none;color:inherit;transition:all .15s;display:block}
+.demo-card:hover{box-shadow:0 10px 15px -3px rgba(0,0,0,.08);transform:translateY(-2px);border-color:inherit}
+.demo-card.risk-low{border-left:3px solid #059669}
+.demo-card.risk-medium{border-left:3px solid #d97706}
+.demo-card.risk-high{border-left:3px solid #dc2626}
+.demo-badge{display:inline-block;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:600;margin-bottom:12px}
+.demo-badge.risk-low{background:#ecfdf5;color:#059669}
+.demo-badge.risk-medium{background:#fffbeb;color:#d97706}
+.demo-badge.risk-high{background:#fef2f2;color:#dc2626}
+.demo-card h3{font-size:16px;font-weight:600;margin-bottom:10px}
+.demo-findings{list-style:none;margin-bottom:14px}
+.demo-findings li{padding:4px 0 4px 18px;font-size:13px;color:#64748b;position:relative}
+.demo-findings li::before{content:'!';position:absolute;left:0;top:4px;width:14px;height:14px;border-radius:50%;background:#fef2f2;color:#dc2626;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.demo-cta{font-size:13px;font-weight:600;color:#2563eb}
 .features-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
 .feature-card{background:#fff;border-radius:12px;padding:24px;box-shadow:0 1px 3px rgba(0,0,0,.06);border:1px solid #e2e8f0}
 .feature-icon{width:40px;height:40px;border-radius:10px;background:#eff6ff;display:flex;align-items:center;justify-content:center;margin-bottom:12px;color:#2563eb}
 .feature-card h3{font-size:15px;font-weight:600;margin-bottom:6px}
 .feature-card p{font-size:13px;color:#64748b}
-.steps{display:flex;align-items:flex-start;justify-content:center;text-align:center}
-.step{flex:1;max-width:180px}
-.step-num{width:40px;height:40px;border-radius:50%;background:#2563eb;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;margin:0 auto 12px}
-.step h3{font-size:15px;font-weight:600;margin-bottom:4px}
-.step p{font-size:13px;color:#64748b}
-.step-arrow{display:flex;align-items:center;padding-top:8px;color:#e2e8f0}
 .pricing-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
 .pricing-card{background:#fff;border-radius:12px;padding:32px;box-shadow:0 1px 3px rgba(0,0,0,.06);border:1px solid #e2e8f0;text-align:center;position:relative}
 .pricing-card.featured{border-color:#2563eb;box-shadow:0 0 0 1px #2563eb,0 10px 15px -3px rgba(0,0,0,.08)}
@@ -95,6 +152,6 @@
 .cta-section{text-align:center;padding:64px 0}
 .cta-sub{font-size:17px;color:#64748b;margin-top:12px}
 .footer{text-align:center;padding:40px 0;font-size:13px;color:#64748b;border-top:1px solid #e2e8f0;margin-top:40px}
-@media (max-width:768px){.features-grid{grid-template-columns:1fr 1fr}.pricing-grid{grid-template-columns:1fr}.steps{flex-direction:column;align-items:center;gap:16px}.step-arrow{transform:rotate(90deg)}}
-@media (max-width:640px){.hero-title{font-size:28px}.features-grid{grid-template-columns:1fr}.hero-actions{flex-direction:column}.pricing-grid{grid-template-columns:1fr}}
+@media (max-width:768px){.features-grid,.pricing-grid,.problem-grid,.demo-grid{grid-template-columns:1fr 1fr}.trust-stats{flex-wrap:wrap;gap:24px}}
+@media (max-width:640px){.hero-title{font-size:28px}.features-grid,.pricing-grid,.problem-grid,.demo-grid{grid-template-columns:1fr}.hero-actions{flex-direction:column}.pricing-grid{grid-template-columns:1fr}}
 </style>
