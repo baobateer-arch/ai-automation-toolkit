@@ -226,3 +226,6 @@ uploads/
 # Frontend
 frontend/node_modules/
 frontend/dist/
+
+# Database
+*.db
