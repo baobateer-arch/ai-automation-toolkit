@@ -57,6 +57,7 @@ Integrated with DeepSeek API for real AI chat responses.
 
 
 - POST /api/upload   — upload a PDF file and extract its text
+- POST /api/analyze-pdf — upload and AI-analyze a PDF document
 
        Request:  multipart/form-data with a "file" field (PDF)
        Response: { "filename": "...", "text_length": N, "preview": "first 500 chars" }
@@ -115,6 +116,34 @@ Upload a PDF file and extract its text content using PyMuPDF (fitz).
 
 **Note**: Only `.pdf` files are accepted. A random UUID filename is used
 on the server to avoid collisions.
+
+## Document AI Analysis
+
+Intelligent PDF analysis powered by DeepSeek, extracting summaries,
+key points, risks, and suggestions from uploaded documents.
+
+- **Endpoint**: `POST /api/analyze-pdf`
+- **Request**: `multipart/form-data` with a `file` field (PDF)
+- **Flow**: PDF upload → `PDFService.extract_text()` → `DocumentAIService.analyze()` → AI analysis
+
+### Response
+
+    {
+      "summary": "文档摘要...",
+      "key_points": ["要点1", "要点2", "要点3"],
+      "risks": ["风险1", "风险2"],
+      "suggestions": ["建议1", "建议2"]
+    }
+
+### Example
+
+    curl -X POST http://localhost:8000/api/analyze-pdf \\
+      -F "file=@document.pdf"
+
+The analysis prompt is sent to the DeepSeek `deepseek-chat` model.
+Up to 8000 characters of extracted text are sent to the AI for analysis.
+If the AI response cannot be parsed as JSON, it falls back to returning
+the raw text as the summary with empty arrays for other fields.
 
 ## Docker
 
