@@ -1,4 +1,5 @@
 ﻿from fastapi import APIRouter, UploadFile, File, HTTPException
+from fastapi.responses import FileResponse
 import os
 import uuid
 
@@ -6,6 +7,7 @@ from app.services.pdf_service import PDFService
 from app.services.document_ai_service import DocumentAIService
 from app.database import async_session
 from app.models.report import Report
+from app.services.report_export_service import generate_pdf, generate_docx
 
 router = APIRouter()
 
@@ -109,3 +111,31 @@ async def get_report(report_id: int):
             "suggestions": report.suggestions,
             "created_at": report.created_at.isoformat(),
         }
+
+
+@router.get("/api/reports/{report_id}/export/pdf")
+async def export_report_pdf(report_id: int):
+    async with async_session() as session:
+        from sqlalchemy import select
+        stmt = select(Report).where(Report.id == report_id)
+        report = (await session.execute(stmt)).scalar_one_or_none()
+        if not report:
+            raise HTTPException(status_code=404, detail="Report not found")
+        filepath = generate_pdf(report)
+        return FileResponse(filepath, media_type="application/pdf", filename=f"report_{report.id}.pdf")
+
+
+@router.get("/api/reports/{report_id}/export/docx")
+async def export_report_docx(report_id: int):
+    async with async_session() as session:
+        from sqlalchemy import select
+        stmt = select(Report).where(Report.id == report_id)
+        report = (await session.execute(stmt)).scalar_one_or_none()
+        if not report:
+            raise HTTPException(status_code=404, detail="Report not found")
+        filepath = generate_docx(report)
+        return FileResponse(
+            filepath,
+            media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            filename=f"report_{report.id}.docx",
+        )
