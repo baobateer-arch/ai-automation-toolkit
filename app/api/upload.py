@@ -65,8 +65,8 @@ async def analyze_pdf(file: UploadFile = File(...), user: User = Depends(get_cur
         report = Report(
             user_id=user.id,
             filename=original_filename,
-            key_points=result.get("key_points", []),
-            risks=result.get("risks", []),
+            key_points=result.get("high_risks", []),
+            risks=result.get("missing_clauses", []),
             suggestions=result.get("suggestions", []),
         )
         session.add(report)

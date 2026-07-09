@@ -1,4 +1,4 @@
-import json
+﻿import json
 import re
 from app.services.ai_service import AIService
 
@@ -7,16 +7,19 @@ class DocumentAIService:
 
     @staticmethod
     async def analyze(text: str) -> dict:
-        prompt = f"""You are a professional document analyst. Analyze the following document and return a JSON object with exactly these four fields:
+        prompt = f"""You are an experienced contract lawyer reviewing a business agreement.
 
-- "summary": a concise Chinese summary of the document (1-3 sentences)
-- "key_points": an array of 3-5 key points in Chinese
-- "risks": an array of potential risks or issues identified in the document, in Chinese (can be empty)
-- "suggestions": an array of actionable suggestions based on the document content, in Chinese (can be empty)
+Analyze the contract text below and return a JSON object with exactly these five fields:
+
+- "risk_level": "Low", "Medium", or "High" — overall risk assessment
+- "summary": a concise English summary of the contract (2-3 sentences)
+- "high_risks": an array of high-risk clauses or issues found, in English (can be empty)
+- "missing_clauses": an array of important clauses that appear to be missing, in English (can be empty)
+- "suggestions": an array of actionable suggested improvements, in English (can be empty)
 
 Only output the JSON object, no other text.
 
-Document:
+Contract text:
 {text[:8000]}
 """
         reply = await AIService.chat(prompt)
@@ -46,8 +49,9 @@ Document:
 
         # Fallback: return the raw reply wrapped in a generic structure
         return {
+            "risk_level": "Unknown",
             "summary": reply,
-            "key_points": [],
-            "risks": [],
+            "high_risks": [],
+            "missing_clauses": [],
             "suggestions": [],
         }
