@@ -70,7 +70,7 @@
         <p v-if="error" class="error-message">{{ error }}</p>
       </section>
 
-      <!-- Results -->
+      <!-- Current Result -->
       <section v-if="result" class="results-section">
         <h2 class="section-title">分析结果</h2>
 
@@ -131,14 +131,105 @@
           </ul>
         </div>
       </section>
+
+      <!-- Detail View -->
+      <section v-if="detail" class="results-section">
+        <h2 class="section-title">
+          <button class="btn-back" @click="detail = null">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+            返回
+          </button>
+          {{ detail.filename }}
+        </h2>
+
+        <div class="card card-summary">
+          <h3 class="card-title">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
+            </svg>
+            摘要
+          </h3>
+          <p class="card-text">{{ detail.summary }}</p>
+        </div>
+
+        <div class="card card-points">
+          <h3 class="card-title">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="16" x2="12" y2="12" />
+              <line x1="12" y1="8" x2="12.01" y2="8" />
+            </svg>
+            关键要点
+          </h3>
+          <ul class="card-list">
+            <li v-for="(point, i) in detail.key_points" :key="i" class="list-item">{{ point }}</li>
+            <li v-if="!detail.key_points.length" class="list-item empty">暂无</li>
+          </ul>
+        </div>
+
+        <div class="card card-risks">
+          <h3 class="card-title">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+              <line x1="12" y1="9" x2="12" y2="13" />
+              <line x1="12" y1="17" x2="12.01" y2="17" />
+            </svg>
+            潜在风险
+          </h3>
+          <ul class="card-list">
+            <li v-for="(risk, i) in detail.risks" :key="i" class="list-item">{{ risk }}</li>
+            <li v-if="!detail.risks.length" class="list-item empty">未识别出明显风险</li>
+          </ul>
+        </div>
+
+        <div class="card card-suggestions">
+          <h3 class="card-title">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="1" x2="12" y2="23" />
+              <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+            </svg>
+            建议
+          </h3>
+          <ul class="card-list">
+            <li v-for="(suggestion, i) in detail.suggestions" :key="i" class="list-item">{{ suggestion }}</li>
+            <li v-if="!detail.suggestions.length" class="list-item empty">暂无建议</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- History List -->
+      <section v-if="reports.length && !detail" class="history-section">
+        <h2 class="section-title">历史报告</h2>
+        <div v-for="r in reports" :key="r.id" class="history-card" @click="viewReport(r.id)">
+          <div class="history-card-body">
+            <svg class="history-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+            </svg>
+            <div class="history-info">
+              <p class="history-filename">{{ r.filename }}</p>
+              <p class="history-summary">{{ r.summary }}</p>
+              <p class="history-date">{{ r.created_at }}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <p v-if="!reports.length && !result && !detail" class="empty-hint">暂无分析记录，请上传 PDF 文件开始分析</p>
     </main>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 const API_URL = '/api/analyze-pdf'
+const REPORTS_URL = '/api/reports'
 
 const fileInput = ref(null)
 const selectedFile = ref(null)
@@ -146,6 +237,35 @@ const uploading = ref(false)
 const error = ref('')
 const result = ref(null)
 const isDragover = ref(false)
+const reports = ref([])
+const detail = ref(null)
+
+onMounted(() => {
+  loadReports()
+})
+
+async function loadReports() {
+  try {
+    const resp = await fetch(REPORTS_URL)
+    if (resp.ok) {
+      reports.value = await resp.json()
+    }
+  } catch {
+    // silently fail
+  }
+}
+
+async function viewReport(id) {
+  detail.value = null
+  try {
+    const resp = await fetch(`${REPORTS_URL}/${id}`)
+    if (resp.ok) {
+      detail.value = await resp.json()
+    }
+  } catch {
+    error.value = '加载报告详情失败'
+  }
+}
 
 function selectFile() {
   fileInput.value?.click()
@@ -182,6 +302,7 @@ async function uploadFile() {
   uploading.value = true
   error.value = ''
   result.value = null
+  detail.value = null
 
   const formData = new FormData()
   formData.append('file', selectedFile.value)
@@ -197,6 +318,8 @@ async function uploadFile() {
     }
     const data = await resp.json()
     result.value = data
+    // Refresh history
+    await loadReports()
   } catch (err) {
     if (err.message.includes('Failed to fetch') || err.message.includes('NetworkError')) {
       error.value = '无法连接到服务器，请确认后端已启动'
@@ -450,6 +573,29 @@ body {
   font-weight: 700;
   margin-bottom: 20px;
   color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  background: var(--surface);
+  color: var(--text-secondary);
+  transition: all 0.2s;
+}
+
+.btn-back:hover {
+  background: #f1f5f9;
+  color: var(--text);
 }
 
 .card {
@@ -526,5 +672,76 @@ body {
 
 .list-item.empty::before {
   display: none;
+}
+
+.history-section {
+  margin-top: 40px;
+}
+
+.history-card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  margin-bottom: 12px;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.history-card:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary);
+}
+
+.history-card-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 20px;
+}
+
+.history-icon {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  color: var(--danger);
+  margin-top: 2px;
+}
+
+.history-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.history-filename {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.history-summary {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.history-date {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.empty-hint {
+  text-align: center;
+  padding: 48px 20px;
+  color: var(--text-secondary);
+  font-size: 14px;
 }
 </style>

@@ -1,8 +1,17 @@
-﻿from fastapi import FastAPI
+﻿from contextlib import asynccontextmanager
+from fastapi import FastAPI
 from app.api.routes import router
 from app.api.upload import router as upload_router
+from app.database import init_db
 
-app = FastAPI(title="AI Automation Toolkit")
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    await init_db()
+    yield
+
+
+app = FastAPI(title="AI Automation Toolkit", lifespan=lifespan)
 app.include_router(router)
 app.include_router(upload_router)
 
