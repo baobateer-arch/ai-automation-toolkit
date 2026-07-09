@@ -20,7 +20,7 @@
         <div class="upload-actions">
           <input ref="fileInput" type="file" accept=".pdf" class="file-input" @change="onFileSelect" />
           <button class="btn btn-select" @click="selectFile" :disabled="uploading">{{ selectedFile ? 'Change file' : 'Select PDF' }}</button>
-          <button class="btn btn-upload" :class="{ 'btn-loading': uploading }" :disabled="!selectedFile || uploading" @click="uploadFile"><span v-if="uploading" class="spinner"></span><span v-else>Analyze Contract</span></button>
+          <button class="btn btn-upload" :class="{ 'btn-loading': uploading }" :disabled="!selectedFile || uploading" @click="uploadFile"><span v-if="uploading" class="spinner"></span><span v-if="uploading" style="font-size:13px;padding-left:4px">Analyzing...</span><span v-else>Analyze Contract</span></button>
         </div>
         <p v-if="error" class="error-message">{{ error }}</p>
       </div>
@@ -37,7 +37,7 @@
         </div>
       </section>
       <section class="history-section">
-        <h2 class="section-title">My Reviews</h2>
+        <h2 class="section-title">My Contract Reviews</h2>
         <div v-if="showDemo" class="demo-grid">
           <div v-for="d in demos" :key="d.id" class="demo-card" :class="'risk-' + d.risk_level.toLowerCase()" @click="viewDemo(d)">
             <div class="demo-badge" :class="'risk-' + d.risk_level.toLowerCase()">{{ d.risk_level }}</div><h3 class="demo-title">{{ d.title }}</h3><p class="demo-summary">{{ d.summary.slice(0, 80) }}...</p>
@@ -72,21 +72,21 @@ const error = ref(''); const result = ref(null); const isDragover = ref(false)
 const reports = ref([]); const detail = ref(null); const showDemo = ref(true)
 const userEmail = ref(localStorage.getItem('user_email') || 'User')
 const demos = [
-  { id:'demo-1',title:'NDA Agreement',risk_level:'Medium',
-    summary:'Reasonable confidentiality but broad non-compete extending 3 years post-termination.',
-    high_risks:['Non-compete clause extends 3 years','Confidentiality definition includes "any information"','Indemnification favors disclosing party'],
-    missing_clauses:['No mutual non-disclosure provisions','No data breach notification','No governing law clause'],
-    suggestions:['Limit non-compete to 1 year','Narrow confidentiality definition','Add mutual indemnification with caps'] },
-  { id:'demo-2',title:'Freelance Contract',risk_level:'High',
-    summary:'Broad IP transfer without clear scope. Vague payment terms and immediate termination clause.',
-    high_risks:['All IP assigned "works made for hire" without limitation','No payment schedule or late fee','Client can terminate without cause'],
-    missing_clauses:['No scope of work definition','No change order process','No limitation of liability','No dispute resolution'],
-    suggestions:['Define deliverables with acceptance criteria','Add milestone-based payment','Include 30-day notice for termination'] },
-  { id:'demo-3',title:'Software Service Agreement',risk_level:'Low',
-    summary:'Well-structured SaaS agreement with clear SLAs. Minor auto-renewal and data portability gaps.',
-    high_risks:['Auto-renewal lacks opt-out reminder','Service credits as sole remedy for downtime'],
-    missing_clauses:['No data portability provisions','No SLA credit escalation'],
-    suggestions:['Add 30-day renewal notice','Include data export mechanism','Add SLA escalation for recurring issues'] },
+  { id:'demo-1',title:'Freelance Agreement',risk_level:'Medium',
+    summary:'Standard freelance contract with reasonable terms but some unclear areas.',
+    high_risks:['Payment terms unclear','Scope of work undefined'],
+    missing_clauses:['No late payment penalty','No change order process'],
+    suggestions:['Add clear payment schedule with milestones','Define specific deliverables and acceptance criteria'] },
+  { id:'demo-2',title:'NDA Agreement',risk_level:'Low',
+    summary:'Standard mutual NDA with reasonable confidentiality terms.',
+    high_risks:['Confidentiality period not specified'],
+    missing_clauses:['No data breach notification requirement','No jurisdiction clause'],
+    suggestions:['Define confidentiality period explicitly','Add governing law provision'] },
+  { id:'demo-3',title:'Software Service Agreement',risk_level:'High',
+    summary:'SaaS agreement with significant liability exposure for the customer.',
+    high_risks:['Unlimited liability clause','Missing termination clause','No SLA guarantees'],
+    missing_clauses:['No data portability provisions','No service level commitments','No limitation of liability'],
+    suggestions:['Add liability cap at contract value','Include 30-day termination notice','Define specific SLA metrics and remedies'] },
 ]
 onMounted(() => { loadReports() })
 async function loadReports() { try { const r = await request.get('/reports'); reports.value = r.data; showDemo.value = r.data.length === 0 } catch {} }

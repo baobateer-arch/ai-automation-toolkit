@@ -12,7 +12,7 @@ async def lifespan(app: FastAPI):
     yield
 
 
-app = FastAPI(title="AI Automation Toolkit", lifespan=lifespan)
+app = FastAPI(title="Contract Risk AI", lifespan=lifespan)
 app.include_router(router)
 app.include_router(upload_router)
 app.include_router(auth_router)
