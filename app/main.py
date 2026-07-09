@@ -2,6 +2,7 @@
 from fastapi import FastAPI
 from app.api.routes import router
 from app.api.upload import router as upload_router
+from app.api.auth import router as auth_router
 from app.database import init_db
 
 
@@ -14,6 +15,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(title="AI Automation Toolkit", lifespan=lifespan)
 app.include_router(router)
 app.include_router(upload_router)
+app.include_router(auth_router)
 
 
 if __name__ == "__main__":
