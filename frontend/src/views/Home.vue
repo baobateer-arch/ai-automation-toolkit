@@ -2,26 +2,46 @@
   <div class="landing">
     <nav class="nav"><div class="nav-inner">
       <router-link to="/" class="nav-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Contract Risk AI</router-link>
-      <div class="nav-links"><router-link to="/login">Login</router-link><router-link to="/register" class="btn btn-primary btn-sm">Get Free Review</router-link></div>
+      <div class="nav-links"><router-link to="/login">Login</router-link><router-link to="/register" class="btn btn-primary btn-sm">Free Risk Review</router-link></div>
     </div></nav>
 
     <section class="hero"><div class="hero-inner">
       <h1 class="hero-title">Find hidden risks in your contracts before you sign.</h1>
-      <p class="hero-sub">AI-powered contract review for freelancers, startups and small businesses.</p>
-      <div class="hero-actions"><router-link to="/register" class="btn btn-hero">Get Free Contract Review</router-link><router-link to="/login" class="btn btn-hero-outline">Login</router-link></div>
+      <p class="hero-sub">AI-powered contract review for agencies, freelancers and startups.</p>
+      <div class="hero-actions"><router-link to="/register" class="btn btn-hero">Get Free Contract Risk Review</router-link><router-link to="/login" class="btn btn-hero-outline">Login</router-link></div>
     </div></section>
 
     <section class="section problem-section">
-      <h2 class="section-title centered">One bad clause can cost you everything.</h2>
+      <h2 class="section-title centered">Agencies lose money because of unclear contracts.</h2>
       <div class="problem-grid">
-        <div class="problem-card"><div class="problem-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div><h3>Hidden liability traps</h3><p>Freelancers sign away IP rights. Agencies accept unlimited liability. Startups miss termination clauses.</p></div>
-        <div class="problem-card"><div class="problem-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div><h3>Missing key protections</h3><p>No payment guarantees. No scope definition. No data ownership terms. These gaps cost you later.</p></div>
-        <div class="problem-card"><div class="problem-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div><h3>You don't know what you're signing</h3><p>Most people never read the fine print. AI catches what you miss in minutes, not hours.</p></div>
+        <div class="problem-card"><div class="p-icon scope"></div><h3>Scope Creep</h3><p>Clients add unbilled work. Your contract lacks scope boundaries. Margins disappear.</p></div>
+        <div class="problem-card"><div class="p-icon delay"></div><h3>Payment Delays</h3><p>Net 90 terms. No late fees. No leverage. Your cash flow suffers for months.</p></div>
+        <div class="problem-card"><div class="p-icon liability"></div><h3>Liability Exposure</h3><p>Unlimited liability clauses put your entire agency at risk for a single project.</p></div>
+      </div>
+    </section>
+
+    <section class="section how-section">
+      <h2 class="section-title centered">How it works</h2>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><h3>Upload your contract</h3><p>Drop your PDF contract or agreement.</p></div>
+        <div class="step-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><polyline points="9 18 15 12 9 6"/></svg></div>
+        <div class="step"><div class="step-num">2</div><h3>AI reviews for risks</h3><p>DeepSeek AI analyzes clauses, gaps and exposure.</p></div>
+        <div class="step-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><polyline points="9 18 15 12 9 6"/></svg></div>
+        <div class="step"><div class="step-num">3</div><h3>Get your risk report</h3><p>Download a detailed report with findings and recommendations.</p></div>
+      </div>
+    </section>
+
+    <section class="section risks-section">
+      <h2 class="section-title centered">Real risks our AI finds in agency contracts</h2>
+      <div class="risks-grid">
+        <div class="risk-card"><div class="risk-num">01</div><h3>Scope Creep</h3><p>No change order process, vague deliverables, unlimited revision cycles. Clients add work for free and your margins vanish.</p></div>
+        <div class="risk-card"><div class="risk-num">02</div><h3>Payment Delays</h3><p>Missing late fees, unclear invoicing terms, no retainers. Agencies wait 60-90 days for payment with no recourse.</p></div>
+        <div class="risk-card"><div class="risk-num">03</div><h3>Liability Exposure</h3><p>Uncapped liability, missing indemnification caps, no limitation of liability. One client dispute can sink your agency.</p></div>
       </div>
     </section>
 
     <section class="trust-bar">
-      <div class="trust-inner"><span>Trusted by freelancers, agencies and startups worldwide</span></div>
+      <div class="trust-inner"><span>Trusted by agencies and startups worldwide</span></div>
       <div class="trust-stats"><div class="trust-stat"><strong>500+</strong><span>contracts reviewed</span></div><div class="trust-stat"><strong>98%</strong><span>risk detection rate</span></div><div class="trust-stat"><strong>3 min</strong><span>average review time</span></div></div>
     </section>
 
@@ -29,24 +49,9 @@
       <h2 class="section-title centered">See Contract Risk AI in action</h2>
       <p class="demo-subtitle">Real contracts analyzed. Real risks found.</p>
       <div class="demo-grid">
-        <router-link to="/register" class="demo-card risk-medium">
-          <div class="demo-badge risk-medium">Medium Risk</div>
-          <h3 class="demo-title">Freelance Agreement</h3>
-          <ul class="demo-findings"><li>Scope of work undefined</li><li>Payment terms unclear</li></ul>
-          <span class="demo-cta">See full review →</span>
-        </router-link>
-        <router-link to="/register" class="demo-card risk-low">
-          <div class="demo-badge risk-low">Low Risk</div>
-          <h3 class="demo-title">NDA Agreement</h3>
-          <ul class="demo-findings"><li>No confidentiality period</li><li>No mutual non-disclosure</li></ul>
-          <span class="demo-cta">See full review →</span>
-        </router-link>
-        <router-link to="/register" class="demo-card risk-high">
-          <div class="demo-badge risk-high">High Risk</div>
-          <h3 class="demo-title">Software Service Agreement</h3>
-          <ul class="demo-findings"><li>Unlimited liability clause</li><li>No termination clause</li></ul>
-          <span class="demo-cta">See full review →</span>
-        </router-link>
+        <router-link to="/register" class="demo-card risk-medium"><div class="demo-badge risk-medium">Medium Risk</div><h3 class="demo-title">Freelance Agreement</h3><ul class="demo-findings"><li>Scope of work undefined</li><li>Payment terms unclear</li></ul><span class="demo-cta">See full review →</span></router-link>
+        <router-link to="/register" class="demo-card risk-low"><div class="demo-badge risk-low">Low Risk</div><h3 class="demo-title">NDA Agreement</h3><ul class="demo-findings"><li>No confidentiality period</li><li>No mutual non-disclosure</li></ul><span class="demo-cta">See full review →</span></router-link>
+        <router-link to="/register" class="demo-card risk-high"><div class="demo-badge risk-high">High Risk</div><h3 class="demo-title">Software Service Agreement</h3><ul class="demo-findings"><li>Unlimited liability clause</li><li>No termination clause</li></ul><span class="demo-cta">See full review →</span></router-link>
       </div>
     </section>
 
@@ -73,10 +78,18 @@
     <section class="section cta-section">
       <h2 class="section-title centered">Ready to review your contract?</h2>
       <p class="cta-sub">Upload your first contract free and see what Contract Risk AI can do.</p>
-      <router-link to="/register" class="btn btn-hero">Get Free Contract Review</router-link>
+      <router-link to="/register" class="btn btn-hero">Get Free Contract Risk Review</router-link>
     </section>
 
-    <footer class="footer"><p>&copy; 2026 Contract Risk AI. Built for small businesses.</p></footer>
+    <section class="founder-section">
+      <div class="founder-card">
+        <div class="founder-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <h3>Built by Benjamin</h3>
+        <p>"I built this because I watched agency friends sign bad contracts that cost them thousands. Contract Risk AI gives every agency the same protection as a corporate legal team — without the retainer."</p>
+      </div>
+    </section>
+
+    <footer class="footer"><p>&copy; 2026 Contract Risk AI. Built for agencies.</p></footer>
   </div>
 </template>
 <script setup></script>
@@ -103,9 +116,25 @@
 .problem-section{background:#f8fafc;border-radius:24px;padding:48px 32px;margin:0 -20px}
 .problem-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
 .problem-card{background:#fff;border-radius:12px;padding:28px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.06);border:1px solid #e2e8f0}
-.problem-icon{width:48px;height:48px;border-radius:50%;background:#fef2f2;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;color:#dc2626}
+.p-icon{width:48px;height:48px;border-radius:50%;margin:0 auto 16px}
+.p-icon.scope{background:#fef2f2 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23dc2626' stroke-width='2'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cline x1='15' y1='9' x2='9' y2='15'/%3E%3Cline x1='9' y1='9' x2='15' y2='15'/%3E%3C/svg%3E") center/24px no-repeat}
+.p-icon.delay{background:#fffbeb url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d97706' stroke-width='2'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpolyline points='12 6 12 12 16 14'/%3E%3C/svg%3E") center/24px no-repeat}
+.p-icon.liability{background:#fef2f2 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23dc2626' stroke-width='2'%3E%3Cpath d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/%3E%3C/svg%3E") center/24px no-repeat}
 .problem-card h3{font-size:16px;font-weight:600;margin-bottom:8px}
 .problem-card p{font-size:14px;color:#64748b;line-height:1.6}
+.how-section{padding-bottom:16px}
+.steps{display:flex;align-items:flex-start;justify-content:center;text-align:center}
+.step{flex:1;max-width:180px}
+.step-num{width:40px;height:40px;border-radius:50%;background:#2563eb;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;margin:0 auto 12px;font-size:16px}
+.step h3{font-size:15px;font-weight:600;margin-bottom:4px}
+.step p{font-size:13px;color:#64748b}
+.step-arrow{display:flex;align-items:center;padding-top:8px;color:#e2e8f0}
+.risks-section{background:linear-gradient(135deg,#f8fafc 0,#f1f5f9 100%);border-radius:24px;padding:48px 32px;margin:0 -20px}
+.risks-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+.risk-card{background:#fff;border-radius:12px;padding:28px;box-shadow:0 1px 3px rgba(0,0,0,.06);border:1px solid #e2e8f0}
+.risk-num{font-size:32px;font-weight:800;color:#2563eb;opacity:.15;margin-bottom:-4px;line-height:1}
+.risk-card h3{font-size:16px;font-weight:600;margin-bottom:8px;margin-top:-4px}
+.risk-card p{font-size:14px;color:#64748b;line-height:1.6}
 .trust-bar{text-align:center;padding:40px 0;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0;margin:0 -20px;padding-left:20px;padding-right:20px}
 .trust-inner{font-size:14px;color:#64748b;margin-bottom:20px}
 .trust-stats{display:flex;justify-content:center;gap:48px}
@@ -115,7 +144,8 @@
 .demo-section{text-align:center}
 .demo-subtitle{font-size:15px;color:#64748b;margin-top:-16px;margin-bottom:32px}
 .demo-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
-.demo-card{background:#fff;border-radius:12px;padding:24px;box-shadow:0 1px 3px rgba(0,0,0,.06);border:1px solid #e2e8f0;text-align:left;text-decoration:none;color:inherit;transition:all .15s;display:block}
+.demo-card,.feature-card,.problem-card,.risk-card{background:#fff;border-radius:12px;padding:24px;box-shadow:0 1px 3px rgba(0,0,0,.06);border:1px solid #e2e8f0}
+.demo-card{text-align:left;text-decoration:none;color:inherit;transition:all .15s;display:block;padding:20px}
 .demo-card:hover{box-shadow:0 10px 15px -3px rgba(0,0,0,.08);transform:translateY(-2px);border-color:inherit}
 .demo-card.risk-low{border-left:3px solid #059669}
 .demo-card.risk-medium{border-left:3px solid #d97706}
@@ -130,7 +160,6 @@
 .demo-findings li::before{content:'!';position:absolute;left:0;top:4px;width:14px;height:14px;border-radius:50%;background:#fef2f2;color:#dc2626;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center}
 .demo-cta{font-size:13px;font-weight:600;color:#2563eb}
 .features-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
-.feature-card{background:#fff;border-radius:12px;padding:24px;box-shadow:0 1px 3px rgba(0,0,0,.06);border:1px solid #e2e8f0}
 .feature-icon{width:40px;height:40px;border-radius:10px;background:#eff6ff;display:flex;align-items:center;justify-content:center;margin-bottom:12px;color:#2563eb}
 .feature-card h3{font-size:15px;font-weight:600;margin-bottom:6px}
 .feature-card p{font-size:13px;color:#64748b}
@@ -151,7 +180,12 @@
 .btn-primary:hover{background:#1d4ed8}
 .cta-section{text-align:center;padding:64px 0}
 .cta-sub{font-size:17px;color:#64748b;margin-top:12px}
-.footer{text-align:center;padding:40px 0;font-size:13px;color:#64748b;border-top:1px solid #e2e8f0;margin-top:40px}
-@media (max-width:768px){.features-grid,.pricing-grid,.problem-grid,.demo-grid{grid-template-columns:1fr 1fr}.trust-stats{flex-wrap:wrap;gap:24px}}
-@media (max-width:640px){.hero-title{font-size:28px}.features-grid,.pricing-grid,.problem-grid,.demo-grid{grid-template-columns:1fr}.hero-actions{flex-direction:column}.pricing-grid{grid-template-columns:1fr}}
+.founder-section{text-align:center;padding:32px 0 48px}
+.founder-card{max-width:480px;margin:0 auto;background:#f8fafc;border-radius:16px;padding:32px;border:1px solid #e2e8f0}
+.founder-avatar{width:48px;height:48px;border-radius:50%;background:#eff6ff;color:#2563eb;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.founder-card h3{font-size:16px;font-weight:600;margin-bottom:8px}
+.founder-card p{font-size:14px;color:#64748b;line-height:1.7;font-style:italic}
+.footer{text-align:center;padding:40px 0;font-size:13px;color:#64748b;border-top:1px solid #e2e8f0;margin-top:20px}
+@media (max-width:768px){.features-grid,.pricing-grid,.problem-grid,.risks-grid,.demo-grid{grid-template-columns:1fr 1fr}.steps{flex-wrap:wrap;gap:8px}.trust-stats{flex-wrap:wrap;gap:24px}}
+@media (max-width:640px){.hero-title{font-size:28px}.features-grid,.pricing-grid,.problem-grid,.risks-grid,.demo-grid{grid-template-columns:1fr}.hero-actions{flex-direction:column}.steps{flex-direction:column;align-items:center;gap:16px}.step-arrow{transform:rotate(90deg)}}
 </style>
