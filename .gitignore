@@ -219,5 +219,10 @@ __marimo__/
 .env
 __pycache__/
 *.pyc
+
 # Uploaded files
 uploads/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
