@@ -229,3 +229,6 @@ frontend/dist/
 
 # Database
 *.db
+
+# Generated reports
+exports/
